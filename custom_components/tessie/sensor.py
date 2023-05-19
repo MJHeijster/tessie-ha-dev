@@ -38,7 +38,7 @@ async def async_setup_entry(
 class InsideTemperatureSensor(TessieEntity, SensorEntity):
     """Representation of a Sensor."""
 
-    _attr_name = "Vehicle temperature"
+    _attr_name = "Vehicle inside temperature"
     _attr_native_unit_of_measurement = TEMP_CELSIUS
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_state_class = SensorStateClass.MEASUREMENT
@@ -59,3 +59,28 @@ class InsideTemperatureSensor(TessieEntity, SensorEntity):
         """Return charge limit."""
 
         return self.coordinator.data[self.vin].climate_state.inside_temp
+
+class OutsideTemperatureSensor(TessieEntity, SensorEntity):
+    """Representation of a Sensor."""
+
+    _attr_name = "Vehicle outside temperature"
+    _attr_native_unit_of_measurement = TEMP_CELSIUS
+    _attr_device_class = SensorDeviceClass.TEMPERATURE
+    _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_has_entity_name = True
+
+    @callback
+    async def async_set_native_value(self, value: float) -> None:
+        """Update the current value."""
+
+        await self.coordinator.async_request_refresh()
+
+    @property
+    def unique_id(self):
+        return f"{self.vin}_outside_temperature"
+
+    @property
+    def native_value(self) -> float | None:
+        """Return charge limit."""
+
+        return self.coordinator.data[self.vin].climate_state.outside_temp
