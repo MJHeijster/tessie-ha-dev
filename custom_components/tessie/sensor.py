@@ -21,7 +21,7 @@ async def async_setup_entry(
         config_entry: ConfigEntry,
         async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Setup Tessie number entities."""
+    """Setup Tessie sensor entities."""
 
     data = hass.data[DOMAIN][config_entry.entry_id]
     coordinator = data["coordinator"]
@@ -43,6 +43,12 @@ class InsideTemperatureSensor(TessieEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_has_entity_name = True
+
+    @callback
+    async def async_set_native_value(self, value: float) -> None:
+        """Update the current value."""
+
+        await self.coordinator.async_request_refresh()
 
     @property
     def unique_id(self):
