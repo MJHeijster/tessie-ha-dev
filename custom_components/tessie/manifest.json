@@ -1,5 +1,5 @@
 {
-    "domain": "tessie-dev",
+    "domain": "tessie",
     "name": "Tessie develop",
     "codeowners": ["@cbzink"],
     "config_flow": true,
