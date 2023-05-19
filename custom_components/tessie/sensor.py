@@ -1,6 +1,6 @@
 """Tessie binary sensors."""
 
-from homeassistant.components.number import (
+from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
     SensorStateClass,
