@@ -31,6 +31,8 @@ async def async_setup_entry(
 
     for vin, vehicle in coordinator.data.items():
         entities.append(InsideTemperatureSensor(coordinator, vin, tessie))
+        entities.append(OutsideTemperatureSensor(coordinator, vin, tessie))
+        entities.append(BatteryLevel(coordinator, vin, tessie))
 
     async_add_entities(entities)
 
