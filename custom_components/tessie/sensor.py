@@ -84,3 +84,29 @@ class OutsideTemperatureSensor(TessieEntity, SensorEntity):
         """Return charge limit."""
 
         return self.coordinator.data[self.vin].climate_state.outside_temp
+
+
+class BatteryLevel(TessieEntity, SensorEntity):
+    """Representation of a Sensor."""
+
+    _attr_name = "The last battery level"
+    _attr_device_class = SensorDeviceClass.BATTERY
+    _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_has_entity_name = True
+
+    @callback
+    async def async_set_native_value(self, value: float) -> None:
+        """Update the current value."""
+
+        await self.coordinator.async_request_refresh()
+
+    @property
+    def unique_id(self):
+        return f"{self.vin}battery_level"
+
+    @property
+    def native_value(self) -> float | None:
+        """Return charge limit."""
+
+        return self.coordinator.data[self.vin].charge_state.battery_level
