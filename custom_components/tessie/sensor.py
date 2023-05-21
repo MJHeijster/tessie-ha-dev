@@ -91,7 +91,7 @@ class OutsideTemperatureSensor(TessieEntity, SensorEntity):
 class BatteryLevel(TessieEntity, SensorEntity):
     """Representation of a Sensor."""
 
-    _attr_name = "The last battery level"
+    _attr_name = "Battery"
     _attr_device_class = SensorDeviceClass.BATTERY
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_native_unit_of_measurement = PERCENTAGE
