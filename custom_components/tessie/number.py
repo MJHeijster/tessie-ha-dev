@@ -50,7 +50,7 @@ class ChargeLimitNumberEntity(TessieEntity, NumberEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vin}_charge_limit"
+        return f"{self.vehicle_name}_charge_limit"
 
     @property
     def native_value(self) -> int:
