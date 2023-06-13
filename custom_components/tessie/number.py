@@ -39,6 +39,7 @@ class ChargeLimitNumberEntity(TessieEntity, NumberEntity):
     _attr_device_class = NumberDeviceClass.BATTERY
     _attr_has_entity_name = True
     _attr_name = "Charge limit"
+    _attr_name = self.vin
 
     @callback
     async def async_set_native_value(self, value: float) -> None:

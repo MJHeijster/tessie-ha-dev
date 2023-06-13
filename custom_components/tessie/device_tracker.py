@@ -33,7 +33,7 @@ class VehicleDeviceTrackerEntity(TessieEntity, TrackerEntity):
 
     _attr_icon = "mdi:car"
     _attr_has_entity_name = True
-    _attr_name = None
+    _attr_name = self.vin
 
     @property
     def unique_id(self):
