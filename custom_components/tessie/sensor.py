@@ -45,7 +45,6 @@ class InsideTemperatureSensor(TessieEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_has_entity_name = True
-    _attr_name = self.vin
 
     @callback
     async def async_set_native_value(self, value: float) -> None:
@@ -55,7 +54,7 @@ class InsideTemperatureSensor(TessieEntity, SensorEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vin}_inside_temperature"
+        return f"{self.vehicle_name}_inside_temperature"
 
     @property
     def native_value(self) -> float | None:
@@ -71,7 +70,6 @@ class OutsideTemperatureSensor(TessieEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_has_entity_name = True
-    _attr_name = self.vin
 
     @callback
     async def async_set_native_value(self, value: float) -> None:
@@ -81,7 +79,7 @@ class OutsideTemperatureSensor(TessieEntity, SensorEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vin}_outside_temperature"
+        return f"{self.vehicle_name}_outside_temperature"
 
     @property
     def native_value(self) -> float | None:
@@ -98,7 +96,6 @@ class BatteryLevel(TessieEntity, SensorEntity):
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_has_entity_name = True
-    _attr_name = self.vin
 
     @callback
     async def async_set_native_value(self, value: float) -> None:
@@ -108,7 +105,7 @@ class BatteryLevel(TessieEntity, SensorEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vin}battery_level"
+        return f"{self.vehicle_name}battery_level"
 
     @property
     def native_value(self) -> float | None:

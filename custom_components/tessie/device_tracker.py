@@ -33,11 +33,11 @@ class VehicleDeviceTrackerEntity(TessieEntity, TrackerEntity):
 
     _attr_icon = "mdi:car"
     _attr_has_entity_name = True
-    _attr_name = self.vin
+    _attr_name = "Location"
 
     @property
     def unique_id(self):
-        return f"{self.vin}_device_tracker"
+        return f"{self.vehicle_name}_device_tracker"
 
     @property
     def latitude(self) -> float | None:
