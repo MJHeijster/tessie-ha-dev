@@ -37,7 +37,7 @@ class VehicleDeviceTrackerEntity(TessieEntity, TrackerEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vehicle_name}_device_tracker"
+        return f"{self.coordinator.data[self.vin]}_device_tracker"
 
     @property
     def latitude(self) -> float | None:

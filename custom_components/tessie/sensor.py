@@ -54,7 +54,7 @@ class InsideTemperatureSensor(TessieEntity, SensorEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vehicle_name}_inside_temperature"
+        return f"{self.coordinator.data[self.vin]}_inside_temperature"
 
     @property
     def native_value(self) -> float | None:
@@ -79,7 +79,7 @@ class OutsideTemperatureSensor(TessieEntity, SensorEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vehicle_name}_outside_temperature"
+        return f"{self.coordinator.data[self.vin]}_outside_temperature"
 
     @property
     def native_value(self) -> float | None:
@@ -105,7 +105,7 @@ class BatteryLevel(TessieEntity, SensorEntity):
 
     @property
     def unique_id(self):
-        return f"{self.vehicle_name}battery_level"
+        return f"{self.coordinator.data[self.vin]}battery_level"
 
     @property
     def native_value(self) -> float | None:
